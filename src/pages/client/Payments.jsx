@@ -1,15 +1,5 @@
 import React, { useMemo, useState } from "react";
-import {
-  Search,
-  Bell,
-  WalletCards,
-  Plus,
-  Filter,
-  Download,
-  Smartphone,
-  Trash2,
-  CreditCard,
-} from "lucide-react";
+import {Search, Bell, WalletCards, Plus, Filter, Download, Smartphone, Trash2,  CreditCard, } from "lucide-react";
 
 const initialSavedMethods = [
   {

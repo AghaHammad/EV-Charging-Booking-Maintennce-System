@@ -1,14 +1,5 @@
 import React, { useRef, useState } from "react";
-import {
-  User,
-  Bell,
-  Shield,
-  Camera,
-  Trash2,
-  LockKeyhole,
-  KeyRound,
-  Smartphone,
-} from "lucide-react";
+import {User, Bell, Shield, Camera, Trash2, LockKeyhole, KeyRound, Smartphone, } from "lucide-react";
 
 function joinClasses(...classes) {
   return classes.filter(Boolean).join(" ");

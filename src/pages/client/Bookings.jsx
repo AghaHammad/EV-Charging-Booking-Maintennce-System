@@ -1,19 +1,5 @@
 import React, { useMemo, useState } from "react";
-import {
-  Plus,
-  Download,
-  Trash2,
-  Info,
-  ChevronLeft,
-  ChevronRight,
-  Clock3,
-  CheckCircle2,
-  WalletCards,
-  Zap,
-  Check,
-  X,
-  Filter,
-} from "lucide-react";
+import { Plus, Download, Trash2, Info, ChevronLeft, ChevronRight, Clock3, CheckCircle2, WalletCards, Zap, Check, X, Filter,} from "lucide-react";
 
 const APPOINTMENTS_PER_PAGE = 5;
 

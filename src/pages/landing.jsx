@@ -1,27 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { 
-  ArrowRight, 
-  PlayCircle, 
-  Wrench, 
-  BarChart3, 
-  Users, 
-  ShieldCheck, 
-  Layout, 
-  ChevronDown, 
-  Star, 
-  Twitter, 
-  Linkedin, 
-  Github, 
-  Menu, 
-  X,
-  Zap,
-  Calendar,
-  Settings,
-  PieChart,
-  CheckCircle2,
-  Globe,
-  Building2
-} from "lucide-react";
+import {ArrowRight, PlayCircle, Wrench, BarChart3, Users, ShieldCheck, Layout, ChevronDown, Star, Twitter, Linkedin, Github, Menu, X, Zap, Calendar, Settings, PieChart, CheckCircle2, Globe, Building2} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
@@ -62,7 +40,7 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen bg-[#050b14] text-white font-sans selection:bg-cyan-500/30">
-      
+
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-[#050b14]/80 backdrop-blur-md border-b border-white/5 py-4" : "bg-transparent py-6"}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-2 group cursor-pointer" onClick={() => navigate("/")}>
@@ -140,12 +118,12 @@ const Landing = () => {
           <div className="relative">
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 blur-3xl opacity-50 group-hover:opacity-75 transition duration-1000"></div>
-              <img 
+              <img
                 src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800"
-                alt="Premium EV" 
+                alt="Premium EV"
                 className="relative rounded-[2rem] object-cover w-full h-[450px] border border-white/10 shadow-2xl shadow-cyan-500/5"
               />
-              
+
               <div className="absolute top-10 -right-4 lg:-right-8 bg-[#0d1520]/90 backdrop-blur-xl p-5 rounded-3xl border border-white/10 shadow-2xl">
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-10 h-10 bg-cyan-500/20 rounded-xl flex items-center justify-center">
@@ -184,7 +162,7 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      
+
       <section className="py-24 px-6 relative overflow-hidden bg-gradient-to-b from-[#050b14] to-[#0a121e]">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -205,9 +183,9 @@ const Landing = () => {
 
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 blur-3xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800" 
-                alt="Audi and Tesla Charging Hub" 
+              <img
+                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800"
+                alt="Audi and Tesla Charging Hub"
                 className="relative rounded-[2.5rem] object-cover w-full h-[450px] border border-white/5 shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]"
               />
               <div className="absolute bottom-10 left-10 bg-[#050b14]/80 backdrop-blur-md p-5 rounded-2xl border border-white/10">
@@ -458,7 +436,7 @@ const Landing = () => {
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <div key={i} className="border-b border-white/5 last:border-0 overflow-hidden">
-                <button 
+                <button
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                   className="w-full py-6 flex justify-between items-center text-left hover:text-cyan-400 transition-colors"
                 >
@@ -499,7 +477,7 @@ const Landing = () => {
                 </button>
               </div>
             </div>
-            
+
             <div>
               <h5 className="font-bold mb-6 text-sm uppercase tracking-widest text-slate-300">Product</h5>
               <ul className="space-y-4 text-slate-500 text-sm font-medium">
