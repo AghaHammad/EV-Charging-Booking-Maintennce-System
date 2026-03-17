@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+
+
+  body {
+    background-color: #050b14;
+    color: #f8fafc;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* Prevent text overflow everywhere */
+  * {
+    word-break: break-word;
+    min-width: 0;
+  }
+
+  /* Hide scrollbar but keep scrolling */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Dark inputs */
+  input, textarea, select {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* Prevent images from overflowing */
+  img {
+    max-width: 100%;
+    display: block;
+  }
