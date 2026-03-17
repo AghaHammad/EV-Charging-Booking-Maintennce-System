@@ -54,7 +54,6 @@ export default function ClientLayout() {
             </button>
           </div>
 
-          {/* Navigation */}
           <nav className="flex-1 space-y-2">
             {SIDEBAR_LINKS.map((item) => {
               const Icon = item.icon;
@@ -83,11 +82,10 @@ export default function ClientLayout() {
             })}
           </nav>
 
-          {/* Bottom profile */}
           <div className="mt-auto rounded-[24px] border border-white/6 bg-[linear-gradient(180deg,rgba(11,37,48,0.98),rgba(9,29,39,0.98))] p-4">
             <button className="flex w-full items-center gap-4 text-left">
               <img
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43b?auto=format&fit=crop&w=200&q=80"
+                src="https://images.unsplash.com/photo-1654110455429-cf322b40a906?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="John Doe"
                 className="h-12 w-12 rounded-full object-cover ring-2 ring-[#12dfff]/15"
               />
@@ -102,9 +100,9 @@ export default function ClientLayout() {
         </div>
       </aside>
 
-      {/* Main */}
+      
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Header */}
+       
         <header className="sticky top-0 z-30 border-b border-[#0fe1ff]/8 bg-[#041a23]/90 backdrop-blur-xl">
           <div className="flex h-[74px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
             <div className="flex min-w-0 items-center gap-3">
@@ -138,7 +136,7 @@ export default function ClientLayout() {
               <div className="border-l border-white/8 pl-3">
                 <button className="overflow-hidden rounded-full border border-white/6">
                   <img
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80"
+                    src="https://images.unsplash.com/photo-1654110455429-cf322b40a906?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Avatar"
                     className="h-11 w-11 object-cover"
                   />
