@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, Zap } from 'lucide-react';
 import { getUser, setSession } from '../utils/auth';
+import { getCurrentYearValue } from '../utils/common/helper';
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -9,8 +10,6 @@ export default function SignIn() {
   const [showPw, setShowPw] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const CURRENT_YEAR = new Date().getFullYear();
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
@@ -176,7 +175,7 @@ export default function SignIn() {
           </div>
 
           <footer className="mt-12 text-center text-[9px] text-slate-600 font-medium uppercase tracking-[0.2em] whitespace-nowrap">
-            PRIVACY POLICY TERMS OF SERVICES {CURRENT_YEAR} EV CHARGING INC.
+            PRIVACY POLICY TERMS OF SERVICES {getCurrentYearValue()} EV CHARGING INC.
           </footer>
         </div>
       </div>

@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import { LayoutDashboard, Map, Settings, Menu, X, Bell, Search, Zap, HelpCircle, CalendarDays, CreditCard, Wrench, } from "lucide-react";
 import { Outlet, NavLink } from "react-router-dom";
+import { SIDEBAR_LINKS as SIDEBAR_LINK_DATA } from "../../data/constants";
 
-const SIDEBAR_LINKS = [
-  { name: "Dashboard", icon: LayoutDashboard, path: "/client" },
-  { name: "Stations", icon: Map, path: "/client/stations" },
-  { name: "Bookings", icon: CalendarDays, path: "/client/bookings" },
-  { name: "Payments", icon: CreditCard, path: "/client/payments" },
-  { name: "Maintenance", icon: Wrench, path: "/client/maintenance" },
-  { name: "Settings", icon: Settings, path: "/client/settings" },
-];
+import qaiserAvatar from "../../assets/avatar/qaiser.png";
+
+const ICON_MAP = {
+  Dashboard: LayoutDashboard,
+  Stations: Map,
+  Bookings: CalendarDays,
+  Payments: CreditCard,
+  Maintenance: Wrench,
+  Settings: Settings,
+};
+
+const SIDEBAR_LINKS = SIDEBAR_LINK_DATA.map((link) => ({
+  ...link,
+  icon: ICON_MAP[link.name],
+}));
 
 export default function ClientLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -85,18 +93,19 @@ export default function ClientLayout() {
           <div className="mt-auto rounded-[24px] border border-white/6 bg-[linear-gradient(180deg,rgba(11,37,48,0.98),rgba(9,29,39,0.98))] p-4">
             <button className="flex w-full items-center gap-4 text-left">
               <img
-                src="https://images.unsplash.com/photo-1654110455429-cf322b40a906?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="John Doe"
+                src={qaiserAvatar}
+                alt="Qaiser"
                 className="h-12 w-12 rounded-full object-cover ring-2 ring-[#12dfff]/15"
               />
               <div className="min-w-0">
                 <h4 className="truncate text-[17px] font-semibold text-white">
-                  John Doe
+                  Qaiser
                 </h4>
                 <p className="mt-0.5 text-[13px] text-white/46">Premium Member</p>
               </div>
             </button>
           </div>
+
         </div>
       </aside>
 
@@ -136,7 +145,7 @@ export default function ClientLayout() {
               <div className="border-l border-white/8 pl-3">
                 <button className="overflow-hidden rounded-full border border-white/6">
                   <img
-                    src="https://images.unsplash.com/photo-1654110455429-cf322b40a906?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src={qaiserAvatar}
                     alt="Avatar"
                     className="h-11 w-11 object-cover"
                   />
