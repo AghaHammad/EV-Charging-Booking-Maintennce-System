@@ -1,6 +1,6 @@
-@import "tailwindcss";
-
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+@import "tailwindcss";
 
 
 
@@ -18,13 +18,13 @@
     letter-spacing: -0.02em;
   }
 
-  /* Prevent text overflow everywhere */
+  
   * {
     word-break: break-word;
     min-width: 0;
   }
 
-  /* Hide scrollbar but keep scrolling */
+  
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -33,14 +33,23 @@
     display: none;
   }
 
-  /* Dark inputs */
+  
   input, textarea, select {
     -webkit-appearance: none;
     appearance: none;
   }
 
-  /* Prevent images from overflowing */
+  
   img {
     max-width: 100%;
     display: block;
   }
+
+@layer components {
+  .section-container {
+    @apply py-24 lg:py-40 px-6;
+  }
+  .glass-card {
+    @apply bg-[#0d1520] border border-white/5 rounded-3xl p-10 hover:border-cyan-500/30 transition-all;
+  }
+}
