@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { 
-  Zap, 
-  User, 
-  Mail, 
-  Phone, 
-  Lock, 
-  ShieldCheck, 
-  ArrowRight,
-  ShieldAlert,
-  CreditCard,
-  Activity,
-  Cloud
-} from 'lucide-react';
+import { Zap, User, Mail, Phone, Lock, ShieldCheck, ArrowRight, ShieldAlert, CreditCard, Activity, Cloud } from 'lucide-react';
 import { saveUser } from '../utils/auth';
 
 const CURRENT_YEAR = new Date().getFullYear();

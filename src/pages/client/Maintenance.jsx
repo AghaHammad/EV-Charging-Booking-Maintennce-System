@@ -1,18 +1,5 @@
 import React, { useMemo, useState } from "react";
-import {
-  TriangleAlert,
-  CircleAlert,
-  CheckCircle2,
-  CircleX,
-  ChevronRight,
-  Activity,
-  Gauge,
-  PlugZap,
-  Ban,
-  Eye,
-  CalendarDays,
-  Cpu,
-} from "lucide-react";
+import {TriangleAlert, CircleAlert, CheckCircle2, CircleX, ChevronRight, Activity, Gauge, PlugZap, Ban, Eye, CalendarDays, Cpu,} from "lucide-react";
 
 const initialHardwareComponents = [
   {
