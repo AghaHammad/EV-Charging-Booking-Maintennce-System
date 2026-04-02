@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LayoutDashboard, Map, Settings, Menu, X, Bell, Search, Zap, HelpCircle, CalendarDays, CreditCard, Wrench, } from "lucide-react";
 import { Outlet, NavLink } from "react-router-dom";
-import { SIDEBAR_LINKS as SIDEBAR_LINK_DATA } from "../../data/constants";
+import { sidebarLinks } from "../../data/Constant";
 
 import qaiserAvatar from "../../assets/avatar/qaiser.png";
 
@@ -14,7 +14,7 @@ const ICON_MAP = {
   Settings: Settings,
 };
 
-const SIDEBAR_LINKS = SIDEBAR_LINK_DATA.map((link) => ({
+const SIDEBAR_LINKS = sidebarLinks.map((link) => ({
   ...link,
   icon: ICON_MAP[link.name],
 }));

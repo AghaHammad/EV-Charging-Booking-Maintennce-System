@@ -1,14 +1,14 @@
-import { Routes, Route } from 'react-router-dom';
-import LandingPage from '../pages/LandingPage';
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import ClientLayout from '../components/layout/ClientLayout';
-import ClientDashboard from '../pages/client/ClientDashboard';
-import Stations from '../pages/client/Stations';
-import Bookings from '../pages/client/Bookings';
-import Payments from '../pages/client/Payments';
-import Maintenance from '../pages/client/Maintenance';
-import Settings from '../pages/client/Settings';
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "../pages/LandingPage";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
+import ClientLayout from "../Components/Layout/ClientLayout";
+import ClientDashboard from "../pages/clientModule/ClientDashboard";
+import ClientStations from "../pages/clientModule/ClientStations";
+import ClientBookings from "../pages/clientModule/ClientBookings";
+import ClientPayments from "../pages/clientModule/ClientPayments";
+import ClientMaintenance from "../pages/clientModule/ClientMaintenance";
+import ClientSettings from "../pages/clientModule/ClientSettings";
 
 export default function AppRoutes() {
   return (
@@ -16,13 +16,14 @@ export default function AppRoutes() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/client" element={<ClientLayout />}>
+
+      <Route path="/clientmodule" element={<ClientLayout />}>
         <Route index element={<ClientDashboard />} />
-        <Route path="/client/stations" element={<Stations />} />
-        <Route path="/client/bookings" element={<Bookings />} />
-        <Route path="/client/payments" element={<Payments />} />
-        <Route path="/client/maintenance" element={<Maintenance />} />
-        <Route path="/client/settings" element={<Settings />} />
+        <Route path="/clientmodule/stations" element={<ClientStations />} />
+        <Route path="/clientmodule/bookings" element={<ClientBookings />} />
+        <Route path="/clientmodule/payments" element={<ClientPayments />} />
+        <Route path="/clientmodule/maintenance" element={<ClientMaintenance />} />
+        <Route path="/clientmodule/settings" element={<ClientSettings />} />
       </Route>
     </Routes>
   );

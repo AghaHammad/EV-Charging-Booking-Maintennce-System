@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, Zap } from 'lucide-react';
-import { getUser, setSession } from '../utils/auth';
+import GoogleIcon from "../assets/Icons/GoogleIcon";
+import SignInImg from "../assets/Images/signin.jpg"
+import { getUser, setSession } from '../utils/Auth';
 import { getCurrentYearValue } from '../utils/common/helper';
 
 export default function SignIn() {
@@ -66,8 +68,8 @@ export default function SignIn() {
             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 blur opacity-75 rounded-[2.5rem]"></div>
             <div className="relative bg-[#0d1520] border border-white/10 rounded-[2.5rem] p-2 overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1732193933911-78eda28a50ce?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                alt="Porsche Performance Hub" 
+                src={SignInImg}
+                alt="Genesis GV60" 
                 className="w-full h-[450px] object-cover rounded-[1.8rem]"
               />
               <div className="absolute bottom-6 left-6 bg-cyan-500/90 backdrop-blur-sm p-2 rounded-xl border border-white/20">
@@ -86,13 +88,13 @@ export default function SignIn() {
 
         <div className="flex gap-16 pt-12 border-t border-white/5 mt-auto">
           <div>
-            <div className="text-3xl font-medium mb-1">500k+</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-medium">Active Stations</div>
+            <span className="text-3xl font-medium mb-1">500k+</span>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-medium">Active Stations</p>
           </div>
           <div className="h-12 w-px bg-white/5"></div>
           <div>
-            <div className="text-3xl font-medium mb-1">12M</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-medium">Charges Monthly</div>
+            <span className="text-3xl font-medium mb-1">12M</span>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-medium">Charges Monthly</p>
           </div>
         </div>
       </div>
@@ -115,9 +117,7 @@ export default function SignIn() {
             <p className="text-xs text-slate-500 font-normal mb-10 opacity-70 italic">Please enter your details to access your dashboard.</p>
 
             <button className="w-full flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl py-4 hover:bg-white/10 transition-all mb-8 group">
-              <svg className="w-5 h-5" viewBox="0 0 24 24">
-                <path fill="#EA4335" d="M12.48 10.92v3.28h7.84c-.24 1.84-.9 3.22-1.8 4.16-1.12 1.12-2.8 2.32-5.96 2.32-4.8 0-8.68-3.88-8.68-8.68s3.88-8.68 8.68-8.68c2.6 0 4.56.92 5.96 2.32l2.32-2.32C18.6 1.12 15.12 0 12 0 5.4 0 0 5.4 0 12s5.4 12 12 12c3.56 0 6.24-1.16 8.36-3.32 2.12-2.12 2.88-5.12 2.88-7.56 0-.68-.04-1.32-.12-1.92h-10.64z" />
-              </svg>
+              <GoogleIcon />
               <span className="font-medium text-sm text-slate-200">Continue with Google</span>
             </button>
 
@@ -132,7 +132,7 @@ export default function SignIn() {
                 <label className="text-sm font-medium text-slate-300 ml-1">Email Address</label>
                 <input 
                   type="email" name="email" value={form.email} onChange={handleChange}
-                  placeholder="name@company.com"
+                  placeholder="agha@company.com"
                   className="w-full bg-[#0d1520] border border-white/5 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all placeholder:text-slate-700"
                 />
               </div>
@@ -175,7 +175,7 @@ export default function SignIn() {
           </div>
 
           <footer className="mt-12 text-center text-[9px] text-slate-600 font-medium uppercase tracking-[0.2em] whitespace-nowrap">
-            PRIVACY POLICY TERMS OF SERVICES {getCurrentYearValue()} EV CHARGING INC.
+            <p>PRIVACY POLICY TERMS OF SERVICES {getCurrentYearValue()} EV CHARGING INC.</p>
           </footer>
         </div>
       </div>

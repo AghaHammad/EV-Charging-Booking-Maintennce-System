@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import LandingNav from "../components/landing/LandingNav";
-import LandingHero from "../components/landing/LandingHero";
-import LandingFeatures from "../components/landing/LandingFeatures";
-import LandingSolutions from "../components/landing/LandingSolutions";
-import LandingTestimonials from "../components/landing/LandingTestimonials";
-import LandingPricing from "../components/landing/LandingPricing";
-import LandingFAQ from "../components/landing/LandingFAQ";
-import LandingFooter from "../components/landing/LandingFooter";
+import LandingNav from "../components/landingpage/LandingNav";
+import LandingHero from "../components/landingpage/LandingHero";
+import LandingFeatures from "../components/landingpage/LandingFeatures";
+import LandingSolutions from "../components/landingpage/LandingSolutions";
+import LandingTestimonials from "../components/landingpage/LandingTestimonials";
+import LandingPricing from "../components/landingpage/LandingPricing";
+import LandingFAQ from "../components/landingpage/LandingFAQ";
+import LandingFooter from "../components/landingpage/LandingFooter";
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
