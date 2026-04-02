@@ -1,5 +1,3 @@
-// Shared auth utilities — user credentials stored in localStorage
-// So one user can sign up and then sign in from any page
 
 export const AUTH_KEY = 'voltcharge_user';
 
@@ -16,7 +14,7 @@ export function getUser() {
 }
 
 export function clearSession() {
-  // Only clear the session flag, not the registered user
+ 
   localStorage.removeItem('voltcharge_session');
 }
 

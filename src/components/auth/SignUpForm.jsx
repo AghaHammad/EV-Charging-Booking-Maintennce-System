@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { User, Mail, Phone, Lock, ShieldCheck, ArrowRight, Zap } from 'lucide-react';
-import { saveUser } from '../../utils/auth';
+import { saveUser } from '../../utils/Auth';
 
 export default function SignUpForm() {
   const navigate = useNavigate();

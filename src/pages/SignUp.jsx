@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Zap, CreditCard, Activity, Cloud } from 'lucide-react';
-import SignUpForm from '../components/auth/SignUpForm';
+import SignUpForm from '../Components/Auth/SignUpForm';
 import { getCurrentYearValue } from '../utils/common/helper';
 
 export default function SignUp() {
@@ -52,23 +52,23 @@ export default function SignUp() {
         </div>
 
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-5xl opacity-40">
-          <div className="flex items-center justify-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
-            <Cloud className="w-5 h-5" />
-            Secure Cloud
-          </div>
-          <div className="flex items-center justify-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
+          <p className="flex items-center justify-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
+          <Cloud className="w-5 h-5" />
+           Secure Cloud
+         </p>
+          <p className="flex items-center justify-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
             <CreditCard className="w-5 h-5" />
             Instant Payouts
-          </div>
-          <div className="flex items-center justify-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
+          </p>
+          <p className="flex items-center justify-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
             <Activity className="w-5 h-5" />
             Live Analytics
-          </div>
+          </p>
         </div>
       </main>
 
       <footer className="py-12 text-center text-[10px] font-bold text-slate-700 uppercase tracking-widest z-10">
-        © {getCurrentYearValue()} VoltCharge Ecosystem • Built for the Future of Energy
+       <p> © {getCurrentYearValue()} VoltCharge Ecosystem • Built for the Future of Energy</p>
       </footer>
     </div>
   );
