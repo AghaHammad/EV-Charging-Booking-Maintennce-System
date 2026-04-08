@@ -8,8 +8,6 @@ import {
   Smartphone,
 } from "lucide-react";
 
-import { joinClasses } from "../../utils/common/helper";
-
 import SettingsSectionHeader from "../../components/clientSettings/Notification";
 import NotificationPreferenceRow from "../../components/clientSettings/NotificationsCard";
 import SecurityActionCard from "../../components/clientSettings/Security";
@@ -30,26 +28,12 @@ const INITIAL_NOTIFICATION_PREFERENCES = {
 
 export default function Settings() {
   const profileImageInputRef = useRef(null);
-  const toastTimeoutRef = useRef(null);
   const temporaryImageUrlRef = useRef(null);
 
   const [profileImageUrl, setProfileImageUrl] = useState(qaiserAvatar);
-  const [toastMessage, setToastMessage] = useState("");
   const [notificationPreferences, setNotificationPreferences] = useState(
     INITIAL_NOTIFICATION_PREFERENCES
   );
-
-  const showToast = (message) => {
-    setToastMessage(message);
-
-    if (toastTimeoutRef.current) {
-      window.clearTimeout(toastTimeoutRef.current);
-    }
-
-    toastTimeoutRef.current = window.setTimeout(() => {
-      setToastMessage("");
-    }, 2200);
-  };
 
   const openProfileImagePicker = () => {
     profileImageInputRef.current?.click();
@@ -67,7 +51,6 @@ export default function Settings() {
     temporaryImageUrlRef.current = nextImageUrl;
 
     setProfileImageUrl(nextImageUrl);
-    showToast("Profile photo updated");
   };
 
   const removeProfilePhoto = () => {
@@ -77,12 +60,9 @@ export default function Settings() {
     }
 
     setProfileImageUrl(qaiserAvatar);
-    showToast("Profile photo removed");
   };
 
-  const handleProfileFieldSelect = (fieldLabel) => {
-    showToast(`${fieldLabel} selected`);
-  };
+  const handleProfileFieldSelect = (fieldLabel) => {};
 
   const toggleNotificationPreference = (key, label) => {
     setNotificationPreferences((currentPreferences) => {
@@ -92,30 +72,18 @@ export default function Settings() {
         [key]: !isCurrentlyEnabled,
       };
 
-      showToast(`${label} ${isCurrentlyEnabled ? "disabled" : "enabled"}`);
-
       return updatedPreferences;
     });
   };
 
-  const handleChangePassword = () => {
-    showToast("Change password opened");
-  };
+  const handleChangePassword = () => {};
 
-  const handleTwoFactorSetup = () => {
-    showToast("Two-factor authentication opened");
-  };
+  const handleTwoFactorSetup = () => {};
 
-  const handleManageDevices = () => {
-    showToast("Device management opened");
-  };
+  const handleManageDevices = () => {};
 
   useEffect(() => {
     return () => {
-      if (toastTimeoutRef.current) {
-        window.clearTimeout(toastTimeoutRef.current);
-      }
-
       if (temporaryImageUrlRef.current) {
         URL.revokeObjectURL(temporaryImageUrlRef.current);
       }
@@ -264,15 +232,6 @@ export default function Settings() {
             />
           </div>
         </section>
-      </div>
-
-      <div
-        className={joinClasses(
-          "pointer-events-none fixed bottom-5 right-5 z-[100] rounded-2xl border border-[#10e8ff]/15 bg-[#0c2230]/95 px-4 py-3 text-[14px] text-white shadow-[0_20px_45px_rgba(0,0,0,0.35)] transition",
-          toastMessage ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-        )}
-      >
-        {toastMessage}
       </div>
     </div>
   );

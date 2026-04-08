@@ -1,10 +1,10 @@
 export const sidebarLinks = [
-  { name: "Dashboard", path: "/clientmodule" },
-  { name: "Stations", path: "/clientmodule/stations" },
-  { name: "Bookings", path: "/clientmodule/bookings" },
-  { name: "Payments", path: "/clientmodule/payments" },
-  { name: "Maintenance", path: "/clientmodule/maintenance" },
-  { name: "Settings", path: "/clientmodule/settings" },
+  { name: "Dashboard", path: "/client-dashboard" },
+  { name: "Stations", path: "/client-dashboard/stations" },
+  { name: "Bookings", path: "/client-dashboard/bookings" },
+  { name: "Payments", path: "/client-dashboard/payments" },
+  { name: "Maintenance", path: "/client-dashboard/maintenance" },
+  { name: "Settings", path: "/client-dashboard/settings" },
 ];
 
 export const dashboardStatData = [
@@ -563,4 +563,29 @@ export const landingTestimonials = [
     role: "Ops Manager, EcoCharge",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150"
   }
+];
+export const STATION_STATUS = {
+  ACTIVE: 'Active & Transmitting',
+  OFFLINE: 'Offline',
+  MAINTENANCE: 'Maintenance',
+};
+
+export const SLOT_STATUS = {
+  AVAILABLE: 'AVAILABLE',
+  IN_USE: 'IN USE',
+  CHARGING: 'CHARGING',
+  FAULT: 'FAULT',
+};
+
+export const SIDEBAR_LINKS = [
+  { id: 'stations', label: 'Stations', icon: 'Zap' },
+  { id: 'schedule', label: 'Schedule', icon: 'Calendar' },
+  { id: 'revenue', label: 'Revenue', icon: 'DollarSign' },
+  { id: 'feedback', label: 'Feedback', icon: 'MessageSquare' },
+  { id: 'settings', label: 'Settings', icon: 'Settings' },
+];
+
+export const FOOTER_LINKS = [
+  { id: 'support', label: 'Support', icon: 'HelpCircle' },
+  { id: 'logout', label: 'Logout', icon: 'LogOut' },
 ];

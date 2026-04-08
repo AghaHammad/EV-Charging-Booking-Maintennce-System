@@ -157,3 +157,21 @@ export function downloadCsvFile(fileName, headers, rows) {
   document.body.removeChild(temporaryLink);
   URL.revokeObjectURL(downloadUrl);
 }
+
+import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+
+
+export function formatPercentage(value) {
+  return `${value}%`;
+}
+
+
+export function formatCoordinate(value, direction) {
+  return `${value.toFixed(4)}° ${direction}`;
+}

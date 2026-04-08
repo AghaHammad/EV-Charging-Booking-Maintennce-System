@@ -9,7 +9,6 @@ export default function MaintenanceSidebar({
   handleScheduledTaskDateClick,
   handleScheduledTaskTitleClick,
   handleInitiateFullSweepClick,
-  showToast,
 }) {
   return (
     <aside className="min-w-0">
@@ -22,7 +21,10 @@ export default function MaintenanceSidebar({
                 Scheduled Tasks
               </h2>
             </div>
-            <button onClick={handleManageTasksClick} className="text-[16px] font-medium text-[#12dfff]">
+            <button
+              onClick={handleManageTasksClick}
+              className="text-[16px] font-medium text-[#12dfff]"
+            >
               Manage
             </button>
           </div>
@@ -38,15 +40,18 @@ export default function MaintenanceSidebar({
             ))}
           </div>
         </div>
-
         <div className="rounded-[30px] border border-white/6 bg-[linear-gradient(180deg,rgba(16,42,56,0.96),rgba(12,34,46,0.98))] p-6 shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
           <h3 className="text-[18px] font-semibold tracking-[-0.03em] text-white">
             Automated Diagnostics
           </h3>
-          <button onClick={() => showToast("Automated diagnostics info opened")} className="mt-4 text-left text-[16px] leading-7 text-white/56">
+          <p className="mt-4 text-left text-[16px] leading-7 text-white/56">
             Run a full system sweep to detect potential failures before they occur.
-          </button>
-          <button onClick={handleInitiateFullSweepClick} className="mt-6 inline-flex h-14 w-full items-center justify-center rounded-[16px] border border-white/16 bg-transparent px-6 text-[16px] font-medium text-white transition hover:bg-white/[0.03]">
+          </p>
+
+          <button
+            onClick={handleInitiateFullSweepClick}
+            className="mt-6 inline-flex h-14 w-full items-center justify-center rounded-[16px] border border-white/16 bg-transparent px-6 text-[16px] font-medium text-white transition hover:bg-white/[0.03]"
+          >
             Initiate Full Sweep
           </button>
         </div>

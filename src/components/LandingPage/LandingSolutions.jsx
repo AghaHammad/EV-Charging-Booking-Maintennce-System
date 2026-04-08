@@ -1,6 +1,6 @@
 import React from "react";
 import { Users, Building2, Globe } from "lucide-react";
-import { landingSolutions } from "../../data/Constant";
+import { landingSolutions } from "../../data/constant";
 
 const LandingSolutions = () => {
   const getIcon = (i) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Calendar, Wrench, BarChart3 } from "lucide-react";
-import { landingFeatures } from "../../data/Constant";
+import { landingFeatures } from "../../data/constant";
 
 const LandingFeatures = () => {
   const getIcon = (i) => {
@@ -13,7 +13,7 @@ const LandingFeatures = () => {
   };
 
   return (
-    <section id="features" className="section-container relative">
+    <section id="features" className="section-container relative scroll-mt-28">
       <div className="max-w-7xl mx-auto text-center mb-24">
         <h2 className="text-3xl lg:text-4xl font-medium mb-6">Advanced Charging Ecosystem</h2>
         <p className="text-slate-400 text-base max-w-2xl mx-auto leading-relaxed font-medium">

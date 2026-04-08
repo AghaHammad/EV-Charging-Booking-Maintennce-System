@@ -6,7 +6,7 @@ import {
   formatTimeLabel,
 } from "../../utils/common/helper";
 import MobileTransactionCard from "./MobileTransactionCard";
-import { formatAmountCell, getPaymentMethodDotClasses } from "./Utils";
+import { formatAmountCell, getPaymentMethodDotClasses } from "./utils";
 
 export default function TransactionsList({
   filteredTransactions,
