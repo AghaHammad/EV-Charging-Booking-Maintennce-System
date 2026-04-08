@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { ChevronDown, Funnel } from "lucide-react";
 import { joinClasses, formatCurrentDate } from "../../utils/common/helper";
-import { stationsList, stationsRecentTrips } from "../../data/Constant";
+import { stationsList, stationsRecentTrips } from "../../data/constant";
 
 import StationsSidebar from "../../components/clientStations/RecentTrips";
 import StationsMap from "../../components/clientStations/StationsMap";
@@ -16,7 +16,6 @@ export default function ClientStations() {
   const [sessionRunning, setSessionRunning] = useState(true);
   const [sessionPercentage, setSessionPercentage] = useState(72);
   const [recentTripItems, setRecentTripItems] = useState(stationsRecentTrips);
-  const [toastMessage, setToastMessage] = useState("");
 
   const currentDateLabel = useMemo(() => formatCurrentDate(), []);
 
@@ -32,79 +31,65 @@ export default function ClientStations() {
         powerFilterValue === "all"
           ? true
           : powerFilterValue === "high"
-            ? station.powerKw >= 250
-            : powerFilterValue === "mid"
-              ? station.powerKw >= 100 && station.powerKw < 250
-              : station.powerKw < 100;
+          ? station.powerKw >= 250
+          : powerFilterValue === "mid"
+          ? station.powerKw >= 100 && station.powerKw < 250
+          : station.powerKw < 100;
 
       const matchesStatus =
-        statusFilterValue === "all" ? true : station.status === statusFilterValue;
+        statusFilterValue === "all"
+          ? true
+          : station.status === statusFilterValue;
 
       return matchesSearch && matchesPower && matchesStatus;
     });
   }, [stationItems, searchText, powerFilterValue, statusFilterValue]);
 
-  const showToast = (message) => {
-    setToastMessage(message);
-    window.clearTimeout(showToast.timeoutId);
-    showToast.timeoutId = window.setTimeout(() => {
-      setToastMessage("");
-    }, 2000);
-  };
-
   const handleStationCardAction = (station) => {
     setSelectedStationId(station.id);
 
     if (station.status === "offline") {
-      showToast(`${station.name} is locked right now.`);
       return;
     }
 
     if (station.status === "busy" && station.actionLabel === "Notify Me") {
-      setStationItems((previousStations) =>
-        previousStations.map((item) =>
+      setStationItems((prev) =>
+        prev.map((item) =>
           item.id === station.id ? { ...item, actionLabel: "Notified" } : item
         )
       );
-      showToast(`Notification enabled for ${station.name}`);
       return;
     }
 
     if (station.status === "busy" && station.actionLabel === "Notified") {
-      setStationItems((previousStations) =>
-        previousStations.map((item) =>
+      setStationItems((prev) =>
+        prev.map((item) =>
           item.id === station.id ? { ...item, actionLabel: "Notify Me" } : item
         )
       );
-      showToast(`Notification removed for ${station.name}`);
       return;
     }
-
-    showToast(`${station.name} opened`);
   };
 
   const handleSessionButtonClick = () => {
     if (sessionRunning) {
       setSessionRunning(false);
-      showToast("Session stopped");
     } else {
       setSessionRunning(true);
-      setSessionPercentage((previousValue) => Math.min(previousValue + 3, 100));
-      showToast("Session resumed");
+      setSessionPercentage((prev) => Math.min(prev + 3, 100));
     }
   };
 
   const handleSeeAllTripsClick = () => {
-    setRecentTripItems((previousTrips) => [
-      ...previousTrips,
+    setRecentTripItems((prev) => [
+      ...prev,
       {
-        id: previousTrips.length + 1,
-        title: `Highway FastCharge ${previousTrips.length + 1}`,
+        id: prev.length + 1,
+        title: `Highway FastCharge ${prev.length + 1}`,
         dateText: currentDateLabel,
-        amountText: `€${(10 + previousTrips.length * 2.1).toFixed(2)}`,
+        amountText: `€${(10 + prev.length * 2.1).toFixed(2)}`,
       },
     ]);
-    showToast("More trips loaded");
   };
 
   return (
@@ -115,10 +100,8 @@ export default function ClientStations() {
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
                 <div>
-                  <h1 className="text-[42px] font-semibold leading-[0.95] tracking-[-0.06em] text-white sm:text-[56px]">
-                    Charging
-                    <br />
-                    Stations
+                  <h1 className="text-[42px] font-semibold text-white sm:text-[56px]">
+                    Charging <br /> Stations
                   </h1>
 
                   <p className="mt-4 text-[18px] text-white/58">
@@ -130,40 +113,30 @@ export default function ClientStations() {
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <div className="relative">
-                    <select
-                      value={powerFilterValue}
-                      onChange={(event) => setPowerFilterValue(event.target.value)}
-                      className="h-12 min-w-[180px] appearance-none rounded-2xl border border-white/10 bg-[#122a38] px-4 pr-10 text-[15px] text-white outline-none"
-                    >
-                      <option value="all">Power: All</option>
-                      <option value="high">Power: 250kW+</option>
-                      <option value="mid">Power: 100-249kW</option>
-                      <option value="low">Power: under 100kW</option>
-                    </select>
-                    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" />
-                  </div>
-
-                  <div className="relative">
-                    <select
-                      value={statusFilterValue}
-                      onChange={(event) => setStatusFilterValue(event.target.value)}
-                      className="h-12 min-w-[160px] appearance-none rounded-2xl border border-white/10 bg-[#122a38] px-4 pr-10 text-[15px] text-white outline-none"
-                    >
-                      <option value="all">Status: All</option>
-                      <option value="available">Available</option>
-                      <option value="busy">Busy</option>
-                      <option value="offline">Offline</option>
-                    </select>
-                    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" />
-                  </div>
-
-                  <button
-                    onClick={() => showToast(`Filters applied • ${currentDateLabel}`)}
-                    className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#10ddff] px-6 text-[16px] font-semibold text-[#05131a] shadow-[0_16px_35px_rgba(16,221,255,0.22)]"
+                  <select
+                    value={powerFilterValue}
+                    onChange={(e) => setPowerFilterValue(e.target.value)}
+                    className="h-12 min-w-[180px] rounded-2xl bg-[#122a38] px-4 text-white"
                   >
-                    <Funnel className="h-4 w-4" />
-                    Filter
+                    <option value="all">Power: All</option>
+                    <option value="high">250kW+</option>
+                    <option value="mid">100-249kW</option>
+                    <option value="low">under 100kW</option>
+                  </select>
+
+                  <select
+                    value={statusFilterValue}
+                    onChange={(e) => setStatusFilterValue(e.target.value)}
+                    className="h-12 min-w-[160px] rounded-2xl bg-[#122a38] px-4 text-white"
+                  >
+                    <option value="all">Status: All</option>
+                    <option value="available">Available</option>
+                    <option value="busy">Busy</option>
+                    <option value="offline">Offline</option>
+                  </select>
+
+                  <button className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#10ddff] px-6 text-[16px] font-semibold text-[#05131a] shadow-[0_16px_35px_rgba(16,221,255,0.22)]">
+                    <Funnel className="h-4 w-4" /> Filter
                   </button>
                 </div>
               </div>
@@ -172,7 +145,6 @@ export default function ClientStations() {
                 filteredStationItems={filteredStationItems}
                 selectedStationId={selectedStationId}
                 setSelectedStationId={setSelectedStationId}
-                showToast={showToast}
                 currentDateLabel={currentDateLabel}
               />
 
@@ -195,18 +167,8 @@ export default function ClientStations() {
           handleSessionButtonClick={handleSessionButtonClick}
           recentTripItems={recentTripItems}
           handleSeeAllTripsClick={handleSeeAllTripsClick}
-          showToast={showToast}
           currentDateLabel={currentDateLabel}
         />
-      </div>
-
-      <div
-        className={joinClasses(
-          "pointer-events-none fixed bottom-5 right-5 z-[100] rounded-2xl border border-[#10e8ff]/15 bg-[#0c2230]/95 px-4 py-3 text-[14px] text-white shadow-[0_20px_45px_rgba(0,0,0,0.35)] transition",
-          toastMessage ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-        )}
-      >
-        {toastMessage}
       </div>
     </div>
   );

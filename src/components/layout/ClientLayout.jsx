@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LayoutDashboard, Map, Settings, Menu, X, Bell, Search, Zap, HelpCircle, CalendarDays, CreditCard, Wrench, } from "lucide-react";
 import { Outlet, NavLink } from "react-router-dom";
-import { sidebarLinks } from "../../data/Constant";
+import { sidebarLinks } from "../../data/constant";
 
 import qaiserAvatar from "../../assets/avatar/qaiser.png";
 
@@ -49,9 +49,9 @@ export default function ClientLayout() {
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0f3a4b] shadow-[0_0_30px_rgba(18,223,255,0.10)]">
                 <Zap className="h-6 w-6 text-[#12dfff]" />
               </div>
-              <span className="text-[20px] font-semibold tracking-[-0.03em] text-white">
+              <button className="text-[20px] font-semibold tracking-[-0.03em] text-white">
                 VoltCharge
-              </span>
+              </button>
             </div>
 
             <button

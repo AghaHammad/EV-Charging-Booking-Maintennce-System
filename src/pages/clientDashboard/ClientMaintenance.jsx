@@ -10,7 +10,7 @@ import {
   hardwareComponents as hardwareComponentsData,
   diagnosticChecks as diagnosticChecksData,
   scheduledTasks as scheduledTasksData,
-} from "../../data/Constant";
+} from "../../data/constant";
 
 import HardwareStatusCard from "../../components/clientMaintenance/HardwareComponentStatus";
 import DiagnosticChecksList from "../../components/clientMaintenance/RecentDiagnosticChecks";
@@ -20,29 +20,12 @@ export default function ClientMaintenance() {
   const [hardwareComponents, setHardwareComponents] = useState(hardwareComponentsData);
   const [diagnosticChecks, setDiagnosticChecks] = useState(diagnosticChecksData);
   const [scheduledTasks, setScheduledTasks] = useState(scheduledTasksData);
-  const [toastMessage, setToastMessage] = useState("");
 
   const currentFullDate = useMemo(() => formatCurrentFullDate(), []);
 
-  const showToast = (message) => {
-    setToastMessage(message);
-    window.clearTimeout(showToast.timeoutId);
-    showToast.timeoutId = window.setTimeout(() => {
-      setToastMessage("");
-    }, 2200);
-  };
-
-  const handleHardwareCardClick = (component) => {
-    showToast(`${component.title} opened`);
-  };
-
-  const handleHardwareTitleClick = (component) => {
-    showToast(`${component.title} details opened`);
-  };
-
-  const handleHardwareStatusClick = (component) => {
-    showToast(`${component.statusLabel} status opened`);
-  };
+  const handleHardwareCardClick = (component) => {};
+  const handleHardwareTitleClick = (component) => {};
+  const handleHardwareStatusClick = (component) => {};
 
   const handleViewAllHistoryClick = () => {
     const nextDiagnosticCheck = {
@@ -54,20 +37,11 @@ export default function ClientMaintenance() {
     };
 
     setDiagnosticChecks((previousChecks) => [...previousChecks, nextDiagnosticCheck]);
-    showToast("More diagnostic history loaded");
   };
 
-  const handleDiagnosticDetailsClick = (diagnosticCheck) => {
-    showToast(`${diagnosticCheck.componentName} details opened`);
-  };
-
-  const handleDiagnosticStatusClick = (diagnosticCheck) => {
-    showToast(`${diagnosticCheck.componentName} status opened`);
-  };
-
-  const handleDiagnosticTimestampClick = (diagnosticCheck) => {
-    showToast(diagnosticCheck.timestampLabel);
-  };
+  const handleDiagnosticDetailsClick = (diagnosticCheck) => {};
+  const handleDiagnosticStatusClick = (diagnosticCheck) => {};
+  const handleDiagnosticTimestampClick = (diagnosticCheck) => {};
 
   const handleManageTasksClick = () => {
     const futureTaskDate = getCurrentFutureTaskDate(7 + scheduledTasks.length * 3);
@@ -81,20 +55,11 @@ export default function ClientMaintenance() {
     };
 
     setScheduledTasks((previousTasks) => [...previousTasks, nextTask]);
-    showToast("New scheduled task added");
   };
 
-  const handleScheduledTaskClick = (task) => {
-    showToast(`${task.title} opened`);
-  };
-
-  const handleScheduledTaskDateClick = (task) => {
-    showToast(`${task.monthLabel} ${task.dayLabel} selected`);
-  };
-
-  const handleScheduledTaskTitleClick = (task) => {
-    showToast(`${task.title} details opened`);
-  };
+  const handleScheduledTaskClick = (task) => {};
+  const handleScheduledTaskDateClick = (task) => {};
+  const handleScheduledTaskTitleClick = (task) => {};
 
   const handleReportIssueClick = () => {
     const incidentTime = formatCurrentTimeLabel();
@@ -108,7 +73,6 @@ export default function ClientMaintenance() {
     };
 
     setDiagnosticChecks((previousChecks) => [nextCheck, ...previousChecks]);
-    showToast("Issue reported");
   };
 
   const handleInitiateFullSweepClick = () => {
@@ -135,7 +99,6 @@ export default function ClientMaintenance() {
     };
 
     setDiagnosticChecks((previousChecks) => [sweepDiagnosticCheck, ...previousChecks]);
-    showToast("Full sweep initiated");
   };
 
   return (
@@ -149,22 +112,9 @@ export default function ClientMaintenance() {
 
             <div className="mt-3 flex flex-wrap items-center gap-2 text-[18px] text-white/58">
               <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[#23df9f]" />
-
-              <button
-                onClick={() => showToast("System health clicked")}
-                className="text-left"
-              >
-                All local nodes performing within expected parameters
-              </button>
-
+              <span>All local nodes performing within expected parameters</span>
               <span>•</span>
-
-              <button
-                onClick={() => showToast(currentFullDate)}
-                className="text-left"
-              >
-                {currentFullDate}
-              </button>
+              <span>{currentFullDate}</span>
             </div>
           </div>
 
@@ -215,18 +165,8 @@ export default function ClientMaintenance() {
             handleScheduledTaskDateClick={handleScheduledTaskDateClick}
             handleScheduledTaskTitleClick={handleScheduledTaskTitleClick}
             handleInitiateFullSweepClick={handleInitiateFullSweepClick}
-            showToast={showToast}
           />
         </div>
-      </div>
-
-      <div
-        className={joinClasses(
-          "pointer-events-none fixed bottom-5 right-5 z-[100] rounded-2xl border border-[#10e8ff]/15 bg-[#0c2230]/95 px-4 py-3 text-[14px] text-white shadow-[0_20px_45px_rgba(0,0,0,0.35)] transition",
-          toastMessage ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-        )}
-      >
-        {toastMessage}
       </div>
     </div>
   );

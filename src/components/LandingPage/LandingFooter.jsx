@@ -11,7 +11,7 @@ const LandingFooter = () => {
               <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
                 <Zap className="text-white w-5 h-5" />
               </div>
-              <span className="text-xl font-medium tracking-tight">VoltCharge</span>
+              <button className="text-xl font-medium tracking-tight">VoltCharge</button>
             </div>
             <p className="text-slate-500 font-medium leading-relaxed max-w-xs">
               The world's most advanced management platform for electric vehicle infrastructure. Powering the future of mobility.
@@ -32,21 +32,44 @@ const LandingFooter = () => {
           <div>
             <h5 className="font-bold mb-6 text-sm uppercase tracking-widest text-slate-300">Product</h5>
             <ul className="space-y-4 text-slate-500 text-sm font-medium">
-              <li><a href="#" className="hover:text-cyan-400 transition-colors">Dashboard</a></li>
-              <li><a href="#" className="hover:text-cyan-400 transition-colors">Mobile App</a></li>
-              <li><a href="#" className="hover:text-cyan-400 transition-colors">API Reference</a></li>
-              <li><a href="#" className="hover:text-cyan-400 transition-colors">Security</a></li>
+            <li><a href="/" onClick={(e) => e.preventDefault()} 
+            className="hover:text-cyan-400 transition-colors cursor-default">Dashboard</a>
+            </li>
+            <li><a href="/" onClick={(e) => e.preventDefault()} 
+            className="hover:text-cyan-400 transition-colors cursor-default">
+            Mobile App</a>
+            </li>
+            <li><a href="/"  onClick={(e) => e.preventDefault()} 
+            className="hover:text-cyan-400 transition-colors cursor-default">
+            API Reference</a>
+            </li>
+            <li><a href="/" onClick={(e) => e.preventDefault()} 
+            className="hover:text-cyan-400 transition-colors cursor-default">
+            Security</a>
+            </li>
             </ul>
           </div>
 
           <div>
             <h5 className="font-bold mb-6 text-sm uppercase tracking-widest text-slate-300">Company</h5>
-            <ul className="space-y-4 text-slate-500 text-sm font-medium">
-              <li><a href="#" className="hover:text-cyan-400 transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-cyan-400 transition-colors">Partners</a></li>
-              <li><a href="#" className="hover:text-cyan-400 transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-cyan-400 transition-colors">Press</a></li>
-            </ul>
+           <ul className="space-y-4 text-slate-500 text-sm font-medium">
+           <li><a href="/" onClick={(e) => e.preventDefault()} 
+           className="hover:text-cyan-400 transition-colors cursor-default">
+           About Us</a>
+           </li>
+           <li><a  href="/" onClick={(e) => e.preventDefault()} 
+           className="hover:text-cyan-400 transition-colors cursor-default">
+           Partners</a>
+           </li>
+           <li><a href="/" onClick={(e) => e.preventDefault()} 
+           className="hover:text-cyan-400 transition-colors cursor-default">
+           Careers</a>
+           </li>
+           <li><a href="/" onClick={(e) => e.preventDefault()} 
+           className="hover:text-cyan-400 transition-colors cursor-default">
+           Press</a>
+           </li>
+           </ul>
           </div>
         </div>
 
@@ -55,8 +78,8 @@ const LandingFooter = () => {
             © {new Date().getFullYear()} VoltCharge System. All rights reserved.
           </p>
           <div className="flex gap-8 text-xs text-slate-600 font-medium">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <span className="hover:text-white transition-colors">Privacy Policy</span>
+            <span className="hover:text-white transition-colors">Terms of Service</span>
           </div>
         </div>
       </div>

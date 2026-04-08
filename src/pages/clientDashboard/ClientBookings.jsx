@@ -11,7 +11,7 @@ import {
 import {
   appointmentsPerPage,
   bookingAppointments as bookingAppointmentsData,
-} from "../../data/Constant";
+} from "../../data/constant";
 import BookingSummaryCard from "../../components/clientBookings/BookingSummaryCard";
 import BookingsList from "../../components/clientBookings/BookingsList";
 import { getStatusLabel } from "../../components/clientBookings/Utils";
@@ -20,7 +20,6 @@ export default function ClientBookings() {
   const [bookingAppointments, setBookingAppointments] = useState(bookingAppointmentsData);
   const [activeStatusFilter, setActiveStatusFilter] = useState("all");
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
-  const [toastMessage, setToastMessage] = useState("");
 
   const currentMonthName = getCurrentMonthName();
   const currentYearValue = getCurrentYearValue();
@@ -50,9 +49,7 @@ export default function ClientBookings() {
   }, [bookingAppointments]);
 
   const filteredBookingAppointments = useMemo(() => {
-    if (activeStatusFilter === "all") {
-      return bookingAppointments;
-    }
+    if (activeStatusFilter === "all") return bookingAppointments;
 
     return bookingAppointments.filter(
       (appointment) => appointment.status === activeStatusFilter
@@ -82,14 +79,6 @@ export default function ClientBookings() {
     filteredBookingAppointments.length
   );
 
-  const showToast = (message) => {
-    setToastMessage(message);
-    window.clearTimeout(showToast.timeoutId);
-    showToast.timeoutId = window.setTimeout(() => {
-      setToastMessage("");
-    }, 2200);
-  };
-
   const handleAddNewBookingClick = () => {
     const now = new Date();
     const startDate = new Date(now);
@@ -115,7 +104,6 @@ export default function ClientBookings() {
     ]);
     setActiveStatusFilter("all");
     setCurrentPageNumber(1);
-    showToast("New booking added");
   };
 
   const handleFilterClick = () => {
@@ -126,7 +114,6 @@ export default function ClientBookings() {
 
     setActiveStatusFilter(nextFilterValue);
     setCurrentPageNumber(1);
-    showToast(`Filter changed to ${nextFilterValue}`);
   };
 
   const handleExportCsvClick = () => {
@@ -165,58 +152,34 @@ export default function ClientBookings() {
       "download",
       `bookings-${currentYearValue}-${String(new Date().getMonth() + 1).padStart(2, "0")}.csv`
     );
+
     document.body.appendChild(temporaryLink);
     temporaryLink.click();
     document.body.removeChild(temporaryLink);
     URL.revokeObjectURL(downloadUrl);
-
-    showToast("CSV exported");
   };
 
-  const handleBookingRowClick = (appointment) => {
-    showToast(`${appointment.stationName} opened`);
-  };
-
+  const handleBookingRowClick = (appointment) => {};
   const handleDeleteBookingClick = (appointmentId) => {
-    const targetAppointment = bookingAppointments.find(
-      (appointment) => appointment.id === appointmentId
-    );
-
     setBookingAppointments((previousAppointments) =>
       previousAppointments.filter((appointment) => appointment.id !== appointmentId)
     );
-
-    const updatedCount = filteredBookingAppointments.length - 1;
-    const updatedPageCount = Math.max(
-      1,
-      Math.ceil(updatedCount / appointmentsPerPage)
-    );
-
-    if (currentPageNumber > updatedPageCount) {
-      setCurrentPageNumber(updatedPageCount);
-    }
-
-    showToast(`${targetAppointment?.stationName || "Booking"} removed`);
   };
 
-  const handleInfoClick = (appointment) => {
-    showToast(`${appointment.stationName} details opened`);
-  };
-
+  const handleInfoClick = (appointment) => {};
   const handlePageButtonClick = (pageNumber) => {
     setCurrentPageNumber(pageNumber);
-    showToast(`Page ${pageNumber} opened`);
   };
 
   const handlePreviousPageClick = () => {
     if (currentPageNumber > 1) {
-      setCurrentPageNumber((previousPage) => previousPage - 1);
+      setCurrentPageNumber((prev) => prev - 1);
     }
   };
 
   const handleNextPageClick = () => {
     if (currentPageNumber < totalPageCount) {
-      setCurrentPageNumber((previousPage) => previousPage + 1);
+      setCurrentPageNumber((prev) => prev + 1);
     }
   };
 
@@ -225,7 +188,7 @@ export default function ClientBookings() {
       <div className="mx-auto w-full max-w-[1280px] space-y-8 pb-10">
         <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
           <div>
-            <h1 className="text-[36px] font-semibold leading-none tracking-[-0.05em] text-white sm:text-[42px]">
+            <h1 className="text-[36px] font-semibold tracking-[-0.05em] text-white">
               Bookings
             </h1>
             <p className="mt-3 text-[18px] text-white/56">
@@ -233,7 +196,7 @@ export default function ClientBookings() {
             </p>
           </div>
 
-          <button
+         <button
             onClick={handleAddNewBookingClick}
             className="inline-flex h-14 items-center justify-center gap-3 self-start rounded-[18px] bg-[#12dfff] px-7 text-[16px] font-semibold text-[#06141b] shadow-[0_16px_30px_rgba(18,223,255,0.22)] transition hover:brightness-105"
           >
@@ -290,15 +253,6 @@ export default function ClientBookings() {
           handlePageButtonClick={handlePageButtonClick}
           handleNextPageClick={handleNextPageClick}
         />
-      </div>
-
-      <div
-        className={joinClasses(
-          "pointer-events-none fixed bottom-5 right-5 z-[100] rounded-2xl border border-[#10e8ff]/15 bg-[#0c2230]/95 px-4 py-3 text-[14px] text-white shadow-[0_20px_45px_rgba(0,0,0,0.35)] transition",
-          toastMessage ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-        )}
-      >
-        {toastMessage}
       </div>
     </div>
   );

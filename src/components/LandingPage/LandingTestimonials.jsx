@@ -1,6 +1,6 @@
 import React from "react";
 import { Star } from "lucide-react";
-import { landingTestimonials } from "../../data/Constant";
+import { landingTestimonials } from "../../data/constant";
 
 const LandingTestimonials = () => {
   return (

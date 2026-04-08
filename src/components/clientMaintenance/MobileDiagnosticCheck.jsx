@@ -10,9 +10,7 @@ export default function MobileDiagnosticCheckCard({
 
   return (
     <div className="rounded-[24px] border border-white/6 bg-[#102d3b]/65 p-4">
-      
-      {/* Top */}
-      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
         <div className="text-left">
           <div className="text-[16px] font-semibold text-white">
             {diagnosticCheck.componentName}

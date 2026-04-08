@@ -1,16 +1,14 @@
 import React, { useMemo, useState } from "react";
 import { AlertTriangle } from "lucide-react";
-import { joinClasses } from "../../utils/common/helper";
 import {
   dashboardStatData,
   mapStations,
   popularStations,
   recentTrips as recentTripsData,
   vehicleHealthItems,
-} from "../../Data/Constant";
+} from "../../data/constant";
 
 import ActiveSession from "../../Components/ClientDashboard/ActiveSession";
-import ActiveSessionCircularProgress from "../../Components/ClientDashboard/ActiveSessionCircularProgress";
 import DashboardMap from "../../Components/ClientDashboard/DashboardMap";
 import DashboardStatCard from "../../Components/ClientDashboard/DashboardStatCard";
 import PopularStationCard from "../../Components/ClientDashboard/PopularStationCard";
@@ -19,27 +17,14 @@ import VehicleHealth from "../../Components/ClientDashboard/VehicleHealth";
 
 export default function ClientDashboard() {
   const [recentTrips, setRecentTrips] = useState(recentTripsData);
-  const [toastMessage, setToastMessage] = useState("");
 
   const visiblePopularStations = useMemo(() => {
     return popularStations;
   }, []);
 
-  const showToast = (message) => {
-    setToastMessage(message);
-    window.clearTimeout(showToast.timeoutId);
-    showToast.timeoutId = window.setTimeout(() => {
-      setToastMessage("");
-    }, 2200);
-  };
+  const handleDashboardStatCardClick = (title) => {};
 
-  const handleDashboardStatCardClick = (title) => {
-    showToast(`${title} opened`);
-  };
-
-  const handleBookNearestClick = (station) => {
-    showToast(`Booked nearest station: ${station.name}`);
-  };
+  const handleBookNearestClick = (station) => {};
 
   const handleSeeAllTripsClick = () => {
     setRecentTrips((previousTrips) => [
@@ -53,7 +38,6 @@ export default function ClientDashboard() {
         status: "success",
       },
     ]);
-    showToast("More trips loaded");
   };
 
   return (
@@ -66,13 +50,8 @@ export default function ClientDashboard() {
             </h1>
             <div className="mt-2 flex flex-wrap items-center gap-2 text-[15px] text-white/56">
               <span>Status:</span>
-             <p className="font-medium text-[#11dfff]">
-              All systems operational
-             </p>
-
-             <p className="text-white/68">
-              March 11, 2026
-             </p>
+              <p className="font-medium text-[#11dfff]">All systems operational</p>
+              <p className="text-white/68">March 11, 2026</p>
             </div>
           </div>
 
@@ -89,7 +68,6 @@ export default function ClientDashboard() {
           <DashboardMap
             initialMapStations={mapStations}
             handleBookNearestClick={handleBookNearestClick}
-            showToast={showToast}
           />
 
           <div className="mt-6">
@@ -98,18 +76,17 @@ export default function ClientDashboard() {
                 Popular Stations
               </h2>
               <button
-                onClick={() => showToast("View all stations clicked")}
                 className="text-[16px] font-medium text-[#12dfff]"
               >
                 View All
               </button>
             </div>
+
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {visiblePopularStations.map((station) => (
                 <PopularStationCard
                   key={station.id}
                   station={station}
-                  onClick={showToast}
                 />
               ))}
             </div>
@@ -118,7 +95,7 @@ export default function ClientDashboard() {
 
         <aside className="min-w-0">
           <div className="grid gap-6 xl:sticky xl:top-[96px]">
-            <ActiveSession showToast={showToast} />
+            <ActiveSession />
 
             <div className="rounded-[28px] border border-white/6 bg-[linear-gradient(180deg,rgba(16,42,56,0.95),rgba(13,35,48,0.96))] p-6">
               <div className="flex items-center justify-between gap-3">
@@ -132,12 +109,12 @@ export default function ClientDashboard() {
                   See All
                 </button>
               </div>
+
               <div className="mt-6 space-y-5">
                 {recentTrips.map((trip) => (
                   <RecentTrip
                     key={trip.id}
                     trip={trip}
-                    onClick={showToast}
                   />
                 ))}
               </div>
@@ -150,27 +127,18 @@ export default function ClientDashboard() {
                   Vehicle Health
                 </h3>
               </div>
+
               <div className="mt-5 space-y-4">
                 {vehicleHealthItems.map((item) => (
                   <VehicleHealth
                     key={item.id}
                     item={item}
-                    onClick={showToast}
                   />
                 ))}
               </div>
             </div>
           </div>
         </aside>
-      </div>
-
-      <div
-        className={joinClasses(
-          "pointer-events-none fixed bottom-5 right-5 z-100 rounded-2xl border border-[#12dfff]/14 bg-[#0a2431]/95 px-4 py-3 text-[14px] text-white shadow-[0_18px_40px_rgba(0,0,0,0.32)] transition",
-          toastMessage ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-        )}
-      >
-        {toastMessage}
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import {
-  joinClasses,
   getCurrentMonthName,
   getCurrentYearValue,
   getIsoDateTimePlusDays as getCurrentIsoDateTimePlusDays,
@@ -11,7 +10,7 @@ import {
 import {
   savedPaymentMethods as savedPaymentMethodsData,
   paymentTransactions as paymentTransactionsData,
-} from "../../data/Constant";
+} from "../../data/constant";
 import { formatAmountCell } from "../../components/clientPayments/utils";
 import SavedMethodCard from "../../components/clientPayments/SavedMethodCard";
 import WalletSection from "../../components/clientPayments/WalletBalance";
@@ -23,7 +22,6 @@ export default function ClientPayments() {
   const [transactions, setTransactions] = useState(paymentTransactionsData);
   const [invoiceSearchText, setInvoiceSearchText] = useState("");
   const [activeTimeFilter, setActiveTimeFilter] = useState("all");
-  const [toastMessage, setToastMessage] = useState("");
 
   const currentMonthName = getCurrentMonthName();
   const currentYearValue = getCurrentYearValue();
@@ -60,14 +58,6 @@ export default function ClientPayments() {
 
   const activeWalletStatusText = "ACTIVE";
 
-  const showToast = (message) => {
-    setToastMessage(message);
-    window.clearTimeout(showToast.timeoutId);
-    showToast.timeoutId = window.setTimeout(() => {
-      setToastMessage("");
-    }, 2200);
-  };
-
   const handleTopUpClick = () => {
     const topUpAmount = 50;
     const nextDateTime = getCurrentIsoDateTimePlusDays(0, 11, 30);
@@ -90,15 +80,12 @@ export default function ClientPayments() {
       },
       ...previousTransactions,
     ]);
-
-    showToast("Wallet topped up");
   };
 
   const handleWithdrawClick = () => {
     const withdrawAmount = 25;
 
     if (walletBalance < withdrawAmount) {
-      showToast("Insufficient wallet balance");
       return;
     }
 
@@ -123,8 +110,6 @@ export default function ClientPayments() {
       },
       ...previousTransactions,
     ]);
-
-    showToast("Withdrawal completed");
   };
 
   const handleAddNewMethodClick = () => {
@@ -140,28 +125,25 @@ export default function ClientPayments() {
             isPrimary: false,
           }
         : newMethodId % 3 === 2
-          ? {
-              id: newMethodId,
-              type: "mastercard",
-              displayName: `•••• ${8800 + newMethodId}`,
-              subtitle: `Expires 0${(newMethodId % 9) + 1}/26`,
-              isPrimary: false,
-            }
-          : {
-              id: newMethodId,
-              type: "applepay",
-              displayName: "Apple Pay",
-              subtitle: "Connected",
-              isPrimary: false,
-            };
+        ? {
+            id: newMethodId,
+            type: "mastercard",
+            displayName: `•••• ${8800 + newMethodId}`,
+            subtitle: `Expires 0${(newMethodId % 9) + 1}/26`,
+            isPrimary: false,
+          }
+        : {
+            id: newMethodId,
+            type: "applepay",
+            displayName: "Apple Pay",
+            subtitle: "Connected",
+            isPrimary: false,
+          };
 
     setSavedMethods((previousMethods) => [...previousMethods, nextMethod]);
-    showToast("New payment method added");
   };
 
-  const handleSavedMethodCardClick = (method) => {
-    showToast(`${method.displayName} opened`);
-  };
+  const handleSavedMethodCardClick = (method) => {};
 
   const handleSetPrimaryMethodClick = (method) => {
     setSavedMethods((previousMethods) =>
@@ -170,13 +152,10 @@ export default function ClientPayments() {
         isPrimary: item.id === method.id,
       }))
     );
-
-    showToast(`${method.displayName} set as primary`);
   };
 
   const handleDeleteMethodClick = (method) => {
     if (savedMethods.length === 1) {
-      showToast("At least one payment method is required");
       return;
     }
 
@@ -191,7 +170,6 @@ export default function ClientPayments() {
     }
 
     setSavedMethods(updatedMethods);
-    showToast(`${method.displayName} removed`);
   };
 
   const handleTimeFilterClick = () => {
@@ -200,26 +178,16 @@ export default function ClientPayments() {
     const nextFilter = filterOrder[(currentFilterIndex + 1) % filterOrder.length];
 
     setActiveTimeFilter(nextFilter);
-    showToast(`Filter changed to ${nextFilter}`);
   };
 
-  const handleOpenTransactionClick = (transaction) => {
-    showToast(`${transaction.stationName} opened`);
-  };
+  const handleOpenTransactionClick = (transaction) => {};
 
-  const handleOpenAmountClick = (transaction) => {
-    showToast(
-      `${formatAmountCell(transaction.amount, transaction.transactionType)} opened`
-    );
-  };
+  const handleOpenAmountClick = (transaction) => {};
 
-  const handleOpenMethodClick = (transaction) => {
-    showToast(`${transaction.paymentMethod} opened`);
-  };
+  const handleOpenMethodClick = (transaction) => {};
 
   const handleDownloadInvoiceClick = (transaction) => {
     if (!transaction.invoiceAvailable) {
-      showToast("No invoice available");
       return;
     }
 
@@ -235,7 +203,6 @@ Energy: ${transaction.energyText}
 `.trim();
 
     downloadTextFile(`${transaction.invoiceLabel}.txt`, invoiceContent);
-    showToast(`${transaction.invoiceLabel} downloaded`);
   };
 
   const handleLoadMoreHistoryClick = () => {
@@ -260,7 +227,6 @@ Energy: ${transaction.energyText}
       ...previousTransactions,
       nextTransaction,
     ]);
-    showToast("More history loaded");
   };
 
   return (
@@ -282,7 +248,6 @@ Energy: ${transaction.energyText}
               activeWalletStatusText={activeWalletStatusText}
               handleTopUpClick={handleTopUpClick}
               handleWithdrawClick={handleWithdrawClick}
-              showToast={showToast}
             />
 
             <div className="mt-8">
@@ -326,21 +291,11 @@ Energy: ${transaction.energyText}
               handleOpenMethodClick={handleOpenMethodClick}
               handleDownloadInvoiceClick={handleDownloadInvoiceClick}
               handleLoadMoreHistoryClick={handleLoadMoreHistoryClick}
-              showToast={showToast}
               currentMonthName={currentMonthName}
               currentYearValue={currentYearValue}
             />
           </section>
         </div>
-      </div>
-
-      <div
-        className={joinClasses(
-          "pointer-events-none fixed bottom-5 right-5 z-[100] rounded-2xl border border-[#10e8ff]/15 bg-[#0c2230]/95 px-4 py-3 text-[14px] text-white shadow-[0_20px_45px_rgba(0,0,0,0.35)] transition",
-          toastMessage ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
-        )}
-      >
-        {toastMessage}
       </div>
     </div>
   );

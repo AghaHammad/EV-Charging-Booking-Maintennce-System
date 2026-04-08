@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { landingFAQS } from "../../data/Constant";
+import { landingFAQS } from "../../data/constant";
 
 const LandingFAQ = () => {
   const [activeFaq, setActiveFaq] = useState(null);
